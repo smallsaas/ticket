@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jfeat.am.module.ticket.services.domain.dao.QueryTicketAcceptanceItemDao">
+    <sql id="Base_Column_List">
+            tk_ticket_acceptance_item.*
+        </sql>
+        <select id="findTicketAcceptanceItemPage" resultType="TicketAcceptanceItem" parameterType="TicketAcceptanceItem">
+            SELECT tk_ticket_acceptance_item.*
+            FROM tk_ticket_acceptance_item
+            WHERE 1=1
+                             <if test="id != null and id>0 ">
+                 AND tk_ticket_acceptance_item.id = #{id}
+            </if>
+                                             <if test="ticketId != null and ticketId>0 ">
+                 AND tk_ticket_acceptance_item.ticket_id = #{ticketId}
+            </if>
+                                             <if test="equipmentId != null and equipmentId>0 ">
+                 AND tk_ticket_acceptance_item.equipment_id = #{equipmentId}
+            </if>
+                                             <if test="equipmentNumber != null and equipmentNumber!= ''">
+                 AND tk_ticket_acceptance_item.equipment_number LIKE CONCAT('%',#{equipmentNumber},'%')
+            </if>
+                                             <if test="equipmentCode != null and equipmentCode!= ''">
+                 AND tk_ticket_acceptance_item.equipment_code LIKE CONCAT('%',#{equipmentCode},'%')
+            </if>
+                                             <if test="equipmentName != null and equipmentName!= ''">
+                 AND tk_ticket_acceptance_item.equipment_name LIKE CONCAT('%',#{equipmentName},'%')
+            </if>
+                                             <if test="equipmentUnit != null and equipmentUnit!= ''">
+                 AND tk_ticket_acceptance_item.equipment_unit LIKE CONCAT('%',#{equipmentUnit},'%')
+            </if>
+                                             <if test="equipmentSpec != null and equipmentSpec!= ''">
+                 AND tk_ticket_acceptance_item.equipment_spec LIKE CONCAT('%',#{equipmentSpec},'%')
+            </if>
+                                             <if test="warehouseId != null and warehouseId>0 ">
+                 AND tk_ticket_acceptance_item.warehouse_id = #{warehouseId}
+            </if>
+                                             <if test="warehouseName != null and warehouseName!= ''">
+                 AND tk_ticket_acceptance_item.warehouse_name LIKE CONCAT('%',#{warehouseName},'%')
+            </if>
+                                             <if test="wh_warehouse_areaId != null and wh_warehouse_areaId>0 ">
+                 AND tk_ticket_acceptance_item.wh_warehouse_area_id = #{whWarehouseAreaId}
+            </if>
+                                             <if test="wh_warehouse_areaName != null and wh_warehouse_areaName!= ''">
+                 AND tk_ticket_acceptance_item.wh_warehouse_area_name LIKE CONCAT('%',#{whWarehouseAreaName},'%')
+            </if>
+                                             <if test="wh_warehouse_slotId != null and wh_warehouse_slotId>0 ">
+                 AND tk_ticket_acceptance_item.wh_warehouse_slot_id = #{whWarehouseSlotId}
+            </if>
+                                             <if test="wh_warehouse_slotName != null and wh_warehouse_slotName!= ''">
+                 AND tk_ticket_acceptance_item.wh_warehouse_slot_name LIKE CONCAT('%',#{whWarehouseSlotName},'%')
+            </if>
+                    </select>
+</mapper>

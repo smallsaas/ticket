@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jfeat.am.module.ticket.services.persistence.dao.TicketAcceptanceMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.jfeat.am.module.ticket.services.persistence.model.TicketAcceptance">
+		<id column="id" property="id" />
+		<result column="execution_id" property="executionId" />
+		<result column="execution_name" property="executionName" />
+		<result column="execution_number" property="executionNumber" />
+		<result column="applicant_id" property="applicantId" />
+		<result column="applicant" property="applicant" />
+		<result column="number" property="number" />
+		<result column="apply_time" property="applyTime" />
+		<result column="status" property="status" />
+		<result column="executor_id" property="executorId" />
+		<result column="executor" property="executor" />
+		<result column="execute_time" property="executeTime" />
+		<result column="process_instance_id" property="processInstanceId" />
+		<result column="strategy_id" property="strategyId" />
+		<result column="strategy_name" property="strategyName" />
+		<result column="lifecycle" property="lifecycle" />
+		<result column="name" property="name" />
+		<result column="plan_department_id" property="planDepartmentId" />
+		<result column="plan_department_name" property="planDepartmentName" />
+		<result column="execute_department_id" property="executeDepartmentId" />
+		<result column="execute_department_name" property="executeDepartmentName" />
+		<result column="fault_ticket_id" property="faultTicketId" />
+		<result column="fault_ticket_number" property="faultTicketNumber" />
+		<result column="fault_name" property="faultName" />
+		<result column="type_id" property="typeId" />
+		<result column="type_name" property="typeName" />
+		<result column="practices" property="practices" />
+		<result column="practices_step" property="practicesStep" />
+		<result column="content" property="content" />
+		<result column="inspector_id" property="inspectorId" />
+		<result column="inspector_name" property="inspectorName" />
+		<result column="check_department_id" property="checkDepartmentId" />
+		<result column="check_department_name" property="checkDepartmentName" />
+		<result column="check_time" property="checkTime" />
+		<result column="result" property="result" />
+		<result column="note" property="note" />
+	</resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, execution_id AS executionId, execution_name AS executionName, execution_number AS executionNumber, applicant_id AS applicantId, applicant, number, apply_time AS applyTime, status, executor_id AS executorId, executor, execute_time AS executeTime, process_instance_id AS processInstanceId, strategy_id AS strategyId, strategy_name AS strategyName, lifecycle, name, plan_department_id AS planDepartmentId, plan_department_name AS planDepartmentName, execute_department_id AS executeDepartmentId, execute_department_name AS executeDepartmentName, fault_ticket_id AS faultTicketId, fault_name AS faultName, type_id AS typeId, type_name AS typeName, practices, practices_step AS practicesStep, content, ticket_id AS ticketId, inspector_id AS inspectorId, inspector_name AS inspectorName, check_department_id AS checkDepartmentId, check_department_name AS checkDepartmentName, check_time AS checkTime, result, note
+    </sql>
+
+</mapper>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jfeat.am.module.ticket.services.domain.dao.QueryTicketExecutionDao">
+    <sql id="Base_Column_List">
+            tk_ticket_execution.*
+    </sql>
+    <select id="findTicketExecutionPage" resultType="TicketExecution" parameterType="TicketExecution">
+        SELECT tk_ticket_execution.*
+        FROM tk_ticket_execution
+        WHERE 1=1
+        <if test="id != null and id>0 ">
+             AND tk_ticket_execution.id = #{id}
+        </if>
+        <if test="applicantId != null and applicantId>0 ">
+             AND tk_ticket_execution.applicant_id = #{applicantId}
+        </if>
+        <if test="applicant != null and applicant!= ''">
+             AND tk_ticket_execution.applicant LIKE CONCAT('%',#{applicant},'%')
+        </if>
+        <if test="number != null and number!= ''">
+             AND tk_ticket_execution.number LIKE CONCAT('%',#{number},'%')
+        </if>
+        <if test="applyTime != null and applyTime>0 ">
+             AND tk_ticket_execution.apply_time = #{applyTime}
+        </if>
+        <if test="status != null and status!= ''">
+             AND tk_ticket_execution.status LIKE CONCAT('%',#{status},'%')
+        </if>
+        <if test="executorId != null and executorId>0 ">
+             AND tk_ticket_execution.executor_id = #{executorId}
+        </if>
+        <if test="executor != null and executor!= ''">
+             AND tk_ticket_execution.executor LIKE CONCAT('%',#{executor},'%')
+        </if>
+        <if test="executeTime != null and executeTime>0 ">
+             AND tk_ticket_execution.execute_time LIKE CONCAT('%',#{executeTime},'%')
+        </if>
+        <if test="processInstanceId != null and processInstanceId>0 ">
+             AND tk_ticket_execution.process_instance_id = #{processInstanceId}
+        </if>
+        <if test="strategyId != null and strategyId>0 ">
+             AND tk_ticket_execution.strategy_id = #{strategyId}
+        </if>
+        <if test="strategyName != null and strategyName!= ''">
+             AND tk_ticket_execution.strategy_name LIKE CONCAT('%',#{strategyName},'%')
+        </if>
+        <if test="lifecycle != null and lifecycle!= ''">
+             AND tk_ticket_execution.lifecycle LIKE CONCAT('%',#{lifecycle},'%')
+        </if>
+        <if test="name != null and name!= ''">
+             AND tk_ticket_execution.name LIKE CONCAT('%',#{name},'%')
+        </if>
+        <if test="planDepartmentId != null and planDepartmentId>0 ">
+             AND tk_ticket_execution.plan_department_id = #{planDepartmentId}
+        </if>
+        <if test="planDepartmentName != null and planDepartmentName != ''">
+             AND tk_ticket_execution.plan_department_name LIKE CONCAT('%',#{planDepartmentName},'%')
+        </if>
+        <if test="executeDepartmentId != null and executeDepartmentId>0 ">
+             AND tk_ticket_execution.execute_department_id = #{executeDepartmentId}
+        </if>
+        <if test="executeDepartmentName != null and executeDepartmentName!= ''">
+             AND tk_ticket_execution.execute_department_name LIKE CONCAT('%',#{executeDepartmentName},'%')
+        </if>
+        <if test="faultTicketId != null and faultTicketId>0 ">
+             AND tk_ticket_execution.fault_ticket_id = #{faultTicketId}
+        </if>
+        <if test="faultName != null and faultName!= ''">
+             AND tk_ticket_execution.fault_name LIKE CONCAT('%',#{faultName},'%')
+        </if>
+        <if test="typeId != null and typeId>0 ">
+             AND tk_ticket_execution.type_id = #{typeId}
+        </if>
+        <if test="typeName != null and typeName!= ''">
+             AND tk_ticket_execution.type_name LIKE CONCAT('%',#{typeName},'%')
+        </if>
+        <if test="practices != null and practices!= ''">
+             AND tk_ticket_execution.practices LIKE CONCAT('%',#{practices},'%')
+        </if>
+        <if test="practicesStep != null and practicesStep!= ''">
+             AND tk_ticket_execution.practices_step LIKE CONCAT('%',#{practicesStep},'%')
+        </if>
+        <if test="content != null and content!= ''">
+             AND tk_ticket_execution.content LIKE CONCAT('%',#{content},'%')
+        </if>
+        <if test="ticketId != null and ticketId>0 ">
+             AND tk_ticket_execution.ticket_id = #{ticketId}
+        </if>
+        <if test="result != null and result!= ''">
+             AND tk_ticket_execution.result LIKE CONCAT('%',#{result},'%')
+        </if>
+        <if test="procedure != null and procedure!= ''">
+             AND tk_ticket_execution.procedure LIKE CONCAT('%',#{procedure},'%')
+        </if>
+
+        order by apply_time DESC,execute_time DESC
+    </select>
+
+    <select id="queryMasterList" resultType="TicketExecution">
+        SELECT *
+        FROM tk_ticket_execution
+        WHERE 1=1
+        <if test="applicantOrExecutorId != null and applicantOrExecutorId != ''">
+            AND ((tk_ticket_execution.applicant_id = #{applicantOrExecutorId})
+            OR (tk_ticket_execution.status is not null and tk_ticket_execution.status != 'DRAFT' AND tk_ticket_execution.executor_id = #{applicantOrExecutorId}))
+        </if>
+        <if test="applicant != null and applicant != ''">
+            AND tk_ticket_execution.applicant LIKE CONCAT ('%',#{applicant},'%')
+        </if>
+        <if test="number != null and number != ''">
+            AND tk_ticket_execution.number LIKE CONCAT ('%',#{number},'%')
+        </if>
+        <if test="name != null and name != ''">
+            AND tk_ticket_execution.name LIKE CONCAT ('%',#{name},'%')
+        </if>
+        <if test="executor != null and executor != ''">
+            AND tk_ticket_execution.executor LIKE CONCAT ('%',#{executor},'%')
+        </if>
+        <if test="planDepartmentName != null and planDepartmentName != ''">
+            AND tk_ticket_execution.plan_department_name LIKE CONCAT ('%',#{planDepartmentName},'%')
+        </if>
+        <if test="executeDepartmentName != null and executeDepartmentName != ''">
+            AND tk_ticket_execution.execute_department_name LIKE CONCAT ('%',#{executeDepartmentName},'%')
+        </if>
+        <if test="startTime != null and startTime != '' and endTime != null and endTime != ''">
+            AND (tk_ticket_execution.apply_time BETWEEN #{startTime} AND #{endTime})
+        </if>
+        <if test="status != null and status != ''">
+            AND tk_ticket_execution.status = #{status}
+        </if>
+        ORDER BY apply_time DESC
+    </select>
+    <select id="queryList" resultType="TicketExecution">
+        SELECT tk_ticket_execution.*
+        FROM tk_ticket_execution
+        WHERE 1=1
+        <if test="status != null and status != ''">
+            AND tk_ticket_execution.status = #{status}
+        </if>
+    </select>
+
+    <select id="queryWarnings" resultType="TicketExecution">
+        SELECT tk_ticket_execution.*
+        FROM tk_ticket_execution
+        WHERE 1=1
+        and tk_ticket_execution.`status`='VERIFIED'
+        AND DATE_SUB(CURDATE(), INTERVAL 7 DAY) &lt; date(tk_ticket_execution.apply_time)
+    </select>
+
+    <select id="totalEquipment" resultType="java.math.BigDecimal">
+        select equipment.amount
+        from equipment
+        left join
+    </select>
+
+</mapper>
