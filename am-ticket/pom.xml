@@ -27,34 +27,20 @@
     <dependencies>
         <dependency>
             <groupId>com.jfeat</groupId>
-            <artifactId>sn-generator</artifactId>
-            <version>${sn-generator.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.jfeat</groupId>
-            <artifactId>sb-base</artifactId>
-            <version>${sb-base.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.jfeat</groupId>
             <artifactId>sb-category</artifactId>
             <version>${sb-category.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.jfeat</groupId>
-            <artifactId>sb-crud</artifactId>
-            <version>${sb-crud.version}</version>
+        <groupId>com.jfeat</groupId>
+            <artifactId>crud-plus</artifactId>
+            <version>3.1.0</version>
         </dependency>
         <dependency>
             <groupId>com.jfeat</groupId>
-            <artifactId>am-fault</artifactId>
-            <version>${am-fault.version}</version>
+            <artifactId>crud-log</artifactId>
+            <version>0.0.5</version>
         </dependency>
-        <dependency>
-            <groupId>com.jfeat</groupId>
-            <artifactId>sb-log</artifactId>
-            <version>${sb-log.version}</version>
-        </dependency>
+
         <!--spring boot????-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
