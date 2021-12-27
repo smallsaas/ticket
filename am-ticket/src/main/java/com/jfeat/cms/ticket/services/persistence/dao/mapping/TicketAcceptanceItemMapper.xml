@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jfeat.cms.ticket.services.persistence.dao.TicketAcceptanceItemMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.jfeat.cms.ticket.services.persistence.model.TicketAcceptanceItem">
+		<id column="id" property="id" />
+		<result column="ticket_acceptance_id" property="ticketAcceptanceId" />
+		<result column="equipment_id" property="equipmentId" />
+		<result column="equipment_number" property="equipmentNumber" />
+		<result column="equipment_code" property="equipmentCode" />
+		<result column="equipment_name" property="equipmentName" />
+		<result column="equipment_unit" property="equipmentUnit" />
+		<result column="equipment_spec" property="equipmentSpec" />
+		<result column="warehouse_id" property="warehouseId" />
+		<result column="warehouse_name" property="warehouseName" />
+		<result column="wh_warehouse_area_id" property="whWarehouseAreaId" />
+		<result column="wh_warehouse_area_name" property="whWarehouseAreaName" />
+		<result column="wh_warehouse_slot_id" property="whWarehouseSlotId" />
+		<result column="wh_warehouse_slot_name" property="whWarehouseSlotName" />
+	</resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, ticket_acceptance_id AS ticketAcceptanceId, equipment_id AS equipmentId, equipment_number AS equipmentNumber, equipment_code AS equipmentCode, equipment_name AS equipmentName, equipment_unit AS equipmentUnit, equipment_spec AS equipmentSpec, warehouse_id AS warehouseId, warehouse_name AS warehouseName, wh_warehouse_area_id AS whWarehouseAreaId, wh_warehouse_area_name AS whWarehouseAreaName, wh_warehouse_slot_id AS whWarehouseSlotId, wh_warehouse_slot_name AS whWarehouseSlotName
+    </sql>
+
+</mapper>
