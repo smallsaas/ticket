@@ -15,11 +15,102 @@
     </parent>
 
     <properties>
-        <skipStandalone>true</skipStandalone>
+        <skipStandalone>false</skipStandalone>
         <lombok.version>1.18.4</lombok.version>
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.jfeat</groupId>
+            <artifactId>dev-dependency</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jfeat</groupId>
+            <artifactId>team</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jfeat</groupId>
+            <artifactId>perm-core</artifactId>
+            <version>${perm-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jfeat</groupId>
+            <artifactId>user-account</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jfeat</groupId>
+            <artifactId>field-config</artifactId>
+            <version>${field-config.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-typehandlers-jsr310</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.9.2</version>
+            <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.mapstruct</groupId>
+                    <artifactId>mapstruct</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>1.4.2.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>1.4.2.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.12.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>3.3.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>spring-mock-mvc</artifactId>
+            <version>3.3.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>1.16.2</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.27</version>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -33,25 +124,23 @@
         <dependency>
             <groupId>com.jfeat</groupId>
             <artifactId>jwt-core</artifactId>
-            <version>${jwt-core.version}</version>
+            <version>0.1.2</version>
         </dependency>
         <dependency>
             <groupId>com.jfeat</groupId>
             <artifactId>crud-plus</artifactId>
             <version>${crud-plus.version}</version>
         </dependency>
-
-        
-        
-        
-        
-        
+        <dependency>
+            <groupId>com.jfeat</groupId>
+            <artifactId>dev-cors</artifactId>
+            <version>0.0.1</version>
+        </dependency>
     </dependencies>
 
 
     <build>
         <plugins>
-
             <plugin>
                 <groupId>com.github.kongchen</groupId>
                 <artifactId>swagger-maven-plugin</artifactId>
@@ -107,6 +196,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.6.1</version>
                 <configuration>
                     <skip>${skipStandalone}</skip>
                 </configuration>
@@ -140,4 +230,24 @@
         </resources>
     </build>
 
+    <distributionManagement>
+        <repository>
+            <id>archiva-internal-dev</id>
+            <name>Internal Repository</name>
+            <url>http://36.138.165.246:8082/repository/internal</url>
+        </repository>
+    </distributionManagement>
+
+    <repositories>
+        <repository>
+            <id>archiva-internal-dev</id>
+            <name>Internal Repository</name>
+            <url>http://repo.dev.smallsaas.cn:8082/repository/internal</url>
+        </repository>
+        <repository>
+            <id>archiva-internal</id>
+            <name>Internal Repository</name>
+            <url>http://git.smallsaas.cn:8081/repository/internal</url>
+        </repository>
+    </repositories>
 </project>
