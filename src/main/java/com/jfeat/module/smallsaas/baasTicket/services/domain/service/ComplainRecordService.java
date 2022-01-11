@@ -6,5 +6,7 @@ import com.jfeat.module.smallsaas.baasTicket.services.gen.crud.service.CRUDCompl
 /**
  * Created by vincent on 2017/10/19.
  */
-public interface ComplainRecordService extends CRUDComplainRecordService{
-    }
+public interface ComplainRecordService extends CRUDComplainRecordService {
+
+    void createComplain(ComplainGenerateCommand command);
+}

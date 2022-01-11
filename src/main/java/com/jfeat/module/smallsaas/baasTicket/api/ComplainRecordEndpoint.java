@@ -61,17 +61,11 @@ public class ComplainRecordEndpoint {
     @BusinessLog(name = "ComplainRecord", value = "create ComplainRecord")
     @Permission(ComplainRecordPermission.COMPLAINRECORD_NEW)
     @PostMapping
-    @ApiOperation(value = "新建 ComplainRecord",response = ComplainRecord.class)
-    public Tip createComplainRecord(@RequestBody ComplainRecord entity){
-        Integer affected=0;
-        try{
-                affected= complainRecordService.createMaster(entity);
-            }catch(DuplicateKeyException e){
-             throw new BusinessException(BusinessCode.DuplicateKey);
-        }
-
-        return SuccessTip.create(affected);
-}
+    @ApiOperation(value = "新建 ComplainRecord", response = ComplainRecord.class)
+    public Tip createComplainRecord(@RequestBody ComplainGenerateRequest request) {
+        complainRecordService.createComplain(COMPLAIN.toCommand(request));
+        return SuccessTip.create();
+    }
 
     @Permission(ComplainRecordPermission.COMPLAINRECORD_VIEW)
     @GetMapping("/{id}")
