@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jfeat.module.smallsaas.baas-ticket.services.domain.dao.QueryComplainReplyRecordDao">
+                                                                                                                                                                                                                                                                        <sql id="Base_Column_List">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        nft_complain_reply_record.id, nft_complain_reply_record.complain_record_id AS complainRecordId, nft_complain_reply_record.replyer_id AS replyerId, nft_complain_reply_record.content, nft_complain_reply_record.is_manager_reply AS isManagerReply, nft_complain_reply_record.reply_time AS replyTime, nft_complain_reply_record.create_time AS createTime
+    </sql>
+
+    
+    
+    <select id="queryMasterModel" resultType="ComplainReplyRecordModel">
+       SELECT nft_complain_reply_record.*
+       FROM nft_complain_reply_record
+       WHERE nft_complain_reply_record.id=#{id}
+       GROUP BY nft_complain_reply_record.id
+    </select>
+
+
+
+                            
+    <select id="findComplainReplyRecordPage" resultType="ComplainReplyRecordRecord" parameterType="ComplainReplyRecordRecord">
+            SELECT <include refid="Base_Column_List"/>
+
+        
+
+        FROM nft_complain_reply_record
+
+        
+        
+        WHERE 1=1
+        
+
+        
+                                                                            <if test="record.id != null and record.id>0 ">
+                                    AND nft_complain_reply_record.id LIKE CONCAT('%',#{record.id},'%')
+                            </if>
+                                                                    
+
+                                                                                                        <if test="record.complainRecordId != null and record.complainRecordId>0 ">
+                                    AND nft_complain_reply_record.complain_record_id LIKE CONCAT('%',#{record.complainRecordId},'%')
+                            </if>
+                                                                    
+
+                                                                                        <if test="record.replyerId != null and record.replyerId>0 ">
+                                    AND nft_complain_reply_record.replyer_id LIKE CONCAT('%',#{record.replyerId},'%')
+                            </if>
+                                                                    <if test="record.content != null and record.content!= ''">
+                                    AND nft_complain_reply_record.content LIKE CONCAT('%',#{record.content},'%')
+                            </if>
+                                                                    
+
+                                                                                                        <if test="record.isManagerReply != null and record.isManagerReply>0 ">
+                                    AND nft_complain_reply_record.is_manager_reply LIKE CONCAT('%',#{record.isManagerReply},'%')
+                            </if>
+                                                                    
+
+                                                                                        <if test="record.replyTime != null and record.replyTime>0 ">
+                                    AND nft_complain_reply_record.reply_time LIKE CONCAT('%',#{record.replyTime},'%')
+                            </if>
+                                                                    
+
+                                                                                        <if test="record.createTime != null and record.createTime>0 ">
+                                    AND nft_complain_reply_record.create_time LIKE CONCAT('%',#{record.createTime},'%')
+                            </if>
+        
+        <if test="startTime != null">
+            <![CDATA[AND nft_complain_reply_record.start_time >= DATE(#{startTime})]]>
+        </if>
+        <if test="endTime != null">
+            <![CDATA[AND nft_complain_reply_record.end_time <= DATE(#{endTime}]]>
+        </if>
+            <!--
+        <if test="search != null and search != ''">
+            OR nft_complain_reply_record.name LIKE CONCAT('%',#{search},'%')
+        </if>
+        -->
+                                    </select>
+</mapper>
