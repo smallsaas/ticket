@@ -1,6 +1,5 @@
 package com.jfeat.module.smallsaas.baasTicket.api.request;
 
-import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

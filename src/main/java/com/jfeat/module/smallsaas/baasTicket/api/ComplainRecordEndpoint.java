@@ -2,41 +2,30 @@
 package com.jfeat.module.smallsaas.baasTicket.api;
 
 
-import com.jfeat.am.core.jwt.JWTKit;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.jfeat.am.common.annotation.Permission;
+import com.jfeat.crud.base.annotation.BusinessLog;
+import com.jfeat.crud.base.exception.BusinessCode;
+import com.jfeat.crud.base.exception.BusinessException;
+import com.jfeat.crud.base.tips.SuccessTip;
+import com.jfeat.crud.base.tips.Tip;
+import com.jfeat.module.smallsaas.baasTicket.api.permission.ComplainRecordPermission;
 import com.jfeat.module.smallsaas.baasTicket.api.request.ComplainGenerateRequest;
+import com.jfeat.module.smallsaas.baasTicket.services.domain.dao.QueryComplainRecordDao;
+import com.jfeat.module.smallsaas.baasTicket.services.domain.model.ComplainRecordRecord;
+import com.jfeat.module.smallsaas.baasTicket.services.domain.service.ComplainRecordService;
+import com.jfeat.module.smallsaas.baasTicket.services.gen.persistence.model.ComplainRecord.ComplainRecord;
 import com.jfeat.module.smallsaas.baasTicket.services.gen.persistence.model.ComplainRecord.ComplainRecordStatus;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.GetMapping;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import com.jfeat.module.smallsaas.baasTicket.services.domain.dao.QueryComplainRecordDao;
-import com.jfeat.crud.base.tips.SuccessTip;
-import com.jfeat.crud.base.tips.Tip;
-import com.jfeat.crud.base.annotation.BusinessLog;
-import com.jfeat.crud.base.exception.BusinessCode;
-import com.jfeat.crud.base.exception.BusinessException;
-import com.jfeat.module.smallsaas.baasTicket.api.permission.*;
-import com.jfeat.am.common.annotation.Permission;
-
-import com.jfeat.module.smallsaas.baasTicket.services.domain.service.*;
-import com.jfeat.module.smallsaas.baasTicket.services.domain.model.ComplainRecordRecord;
-import com.jfeat.module.smallsaas.baasTicket.services.gen.persistence.model.ComplainRecord.ComplainRecord;
-
-import org.springframework.web.bind.annotation.RestController;
-import static com.jfeat.module.smallsaas.baasTicket.services.domain.converter.ComplainConverter.COMPLAIN;
-
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+
+import static com.jfeat.module.smallsaas.baasTicket.services.domain.converter.ComplainConverter.COMPLAIN;
 
 /**
  * <p>
