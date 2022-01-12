@@ -13,6 +13,7 @@ public class ComplainGenerateCommand {
     private String title;
     private String content;
     private String credentialLink;
+    private String complainantRole;
 
     public ComplainGenerateCommand(Long complainantId,Long relationOrderId, String title, String content, String credentialLink) {
         this.relationOrderId = relationOrderId;
@@ -20,9 +21,9 @@ public class ComplainGenerateCommand {
         this.content = content;
         this.credentialLink = credentialLink;
         this.title = title;
-        checkArgument(Objects.nonNull(relationOrderId), "订单号为空");
+        checkArgument(Objects.nonNull(relationOrderId), "投诉订单号为空");
         checkArgument(Objects.nonNull(complainantId), "申述人为空");
-        checkArgument(Objects.nonNull(title), "标题");
-        checkArgument(Objects.nonNull(content), "申诉内容");
+        checkArgument(Objects.nonNull(title), "标题不可为空");
+        checkArgument(Objects.nonNull(content), "申诉内容不可为空");
     }
 }

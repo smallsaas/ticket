@@ -4,47 +4,17 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
-/**
- * <p>
- *
- * </p>
- *
- * @author Code generator
- * @since 2022-01-11
- */
+@Data
 @TableName("nft_complain_record")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 public class ComplainRecord extends Model<ComplainRecord> {
-
-    private static final long serialVersionUID = 1L;
-
-    public static final String ID = "id";
-
-    public static final String COMPLAINANT_ID = "complainant_id";
-
-    public static final String RELATION_ORDER_ID = "relation_order_id";
-
-    public static final String TITLE = "title";
-
-    public static final String CONTENT = "content";
-
-    public static final String CREDENTIAL_LINK = "credential_link";
-
-    public static final String STATUS = "status";
-
-    public static final String CREATETIME = "createTime";
-
-    public static final String UPDATETIME = "updateTime";
-
     /**
      * 申诉单ID
      */
@@ -61,6 +31,7 @@ public class ComplainRecord extends Model<ComplainRecord> {
      */
     private Long relationOrderId;
 
+    private String complainantRole;
     /**
      * 申诉标题
      */
@@ -90,104 +61,4 @@ public class ComplainRecord extends Model<ComplainRecord> {
      * 记录更新时间
      */
     private LocalDateTime updateTime;
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public ComplainRecord setId(Long id) {
-        this.id = id;
-        return this;
-    }
-
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
-    }
-
-    public LocalDateTime getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(LocalDateTime updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public Long getComplainantId() {
-        return complainantId;
-    }
-
-    public ComplainRecord setComplainantId(Long complainantId) {
-        this.complainantId = complainantId;
-        return this;
-    }
-
-    public Long getRelationOrderId() {
-        return relationOrderId;
-    }
-
-    public ComplainRecord setRelationOrderId(Long relationOrderId) {
-        this.relationOrderId = relationOrderId;
-        return this;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public ComplainRecord setTitle(String title) {
-        this.title = title;
-        return this;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public ComplainRecord setContent(String content) {
-        this.content = content;
-        return this;
-    }
-
-    public String getCredentialLink() {
-        return credentialLink;
-    }
-
-    public ComplainRecord setCredentialLink(String credentialLink) {
-        this.credentialLink = credentialLink;
-        return this;
-    }
-
-    public ComplainRecordStatus getStatus() {
-        return status;
-    }
-
-    public ComplainRecord setStatus(ComplainRecordStatus status) {
-        this.status = status;
-        return this;
-    }
-
-
-
-    @Override
-    protected Serializable pkVal() {
-        return this.id;
-    }
-
-    @Override
-    public String toString() {
-        return "ComplainRecord{" +
-                "id=" + id +
-                ", complainantId=" + complainantId +
-                ", relationOrderId=" + relationOrderId +
-                ", title=" + title +
-                ", content=" + content +
-                ", credentialLink=" + credentialLink +
-                ", status=" + status +
-                "}";
-    }
 }

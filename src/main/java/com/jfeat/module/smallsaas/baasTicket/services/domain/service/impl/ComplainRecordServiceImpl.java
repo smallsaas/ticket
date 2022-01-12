@@ -6,6 +6,7 @@ import com.jfeat.module.smallsaas.baasTicket.services.gen.crud.service.impl.CRUD
 import com.jfeat.module.smallsaas.baasTicket.services.gen.persistence.model.ComplainRecord.ComplainRecord;
 import com.jfeat.module.smallsaas.baasTicket.services.gen.persistence.model.ComplainRecord.ComplainRecordStatus;
 import org.springframework.stereotype.Service;
+
 /**
  * <p>
  * 服务实现类
@@ -32,6 +33,7 @@ public class ComplainRecordServiceImpl extends CRUDComplainRecordServiceImpl imp
                 .title(command.getTitle())
                 .content(command.getContent())
                 .credentialLink(command.getCredentialLink())
+                .complainantRole(command.getComplainantRole())
                 .status(ComplainRecordStatus.PENDING_REPLY).build());
     }
 }
