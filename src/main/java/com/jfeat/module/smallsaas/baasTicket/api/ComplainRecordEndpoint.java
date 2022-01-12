@@ -48,7 +48,6 @@ public class ComplainRecordEndpoint {
 
 
     @BusinessLog(name = "ComplainRecord", value = "create ComplainRecord")
-    @Permission(ComplainRecordPermission.COMPLAINRECORD_NEW)
     @PostMapping
     @ApiOperation(value = "新建 ComplainRecord", response = ComplainRecord.class)
     public Tip createComplainRecord(@RequestBody ComplainGenerateRequest request) {
