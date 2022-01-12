@@ -4,6 +4,9 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -17,6 +20,9 @@ import java.util.Date;
  * @since 2022-01-11
  */
 @TableName("nft_complain_reply_record")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ComplainReplyRecord extends Model<ComplainReplyRecord> {
 
     private static final long serialVersionUID = 1L;
