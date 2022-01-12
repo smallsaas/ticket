@@ -229,25 +229,4 @@
             </resource>
         </resources>
     </build>
-
-    <distributionManagement>
-        <repository>
-            <id>archiva-internal-dev</id>
-            <name>Internal Repository</name>
-            <url>http://36.138.165.246:8082/repository/internal</url>
-        </repository>
-    </distributionManagement>
-
-    <repositories>
-        <repository>
-            <id>archiva-internal-dev</id>
-            <name>Internal Repository</name>
-            <url>http://repo.dev.smallsaas.cn:8082/repository/internal</url>
-        </repository>
-        <repository>
-            <id>archiva-internal</id>
-            <name>Internal Repository</name>
-            <url>http://git.smallsaas.cn:8081/repository/internal</url>
-        </repository>
-    </repositories>
 </project>
