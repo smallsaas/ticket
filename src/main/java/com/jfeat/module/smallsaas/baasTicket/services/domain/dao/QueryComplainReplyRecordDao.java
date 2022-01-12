@@ -1,12 +1,11 @@
 package com.jfeat.module.smallsaas.baasTicket.services.domain.dao;
 
-import com.jfeat.module.smallsaas.baasTicket.services.domain.model.ComplainReplyRecordRecord;
-
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.jfeat.crud.plus.QueryMasterDao;
-import org.apache.ibatis.annotations.Param;
-import com.jfeat.module.smallsaas.baasTicket.services.gen.persistence.model.ComplainReplyRecord;
+import com.jfeat.module.smallsaas.baasTicket.services.domain.model.ComplainReplyRecordRecord;
 import com.jfeat.module.smallsaas.baasTicket.services.gen.crud.model.ComplainReplyRecordModel;
+import com.jfeat.module.smallsaas.baasTicket.services.gen.persistence.model.ComplainReplyRecord;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
 import java.util.List;
