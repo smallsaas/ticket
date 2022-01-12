@@ -68,97 +68,21 @@ public class ComplainRecordEndpoint {
     }
 
     @Permission(ComplainRecordPermission.COMPLAINRECORD_VIEW)
-    @GetMapping("/{id}")
-    @ApiOperation(value = "查看 ComplainRecord", response = ComplainRecord.class)
-    public Tip getComplainRecord(@PathVariable Long id) {
-        return SuccessTip.create(complainRecordService.queryMasterModel(queryComplainRecordDao, id));
-    }
+    @GetMapping("/{complainantId}")
+    @ApiOperation(value = "申诉人ID查询申诉记录", response = ComplainRecord.class)
+    public Tip getComplainRecord(@PathVariable Long complainantId,
+                                 @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
+                                 @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize) {
 
-    @BusinessLog(name = "ComplainRecord", value = "update ComplainRecord")
-    @Permission(ComplainRecordPermission.COMPLAINRECORD_EDIT)
-    @PutMapping("/{id}")
-    @ApiOperation(value = "修改 ComplainRecord", response = ComplainRecord.class)
-    public Tip updateComplainRecord(@PathVariable Long id, @RequestBody ComplainRecord entity) {
-        entity.setId(id);
-        return SuccessTip.create(complainRecordService.updateMaster(entity));
-    }
+        var complainRecord= new ComplainRecordRecord();
+        complainRecord.setComplainantId(complainantId);
 
-    @BusinessLog(name = "ComplainRecord", value = "delete ComplainRecord")
-    @Permission(ComplainRecordPermission.COMPLAINRECORD_DELETE)
-    @DeleteMapping("/{id}")
-    @ApiOperation("删除 ComplainRecord")
-    public Tip deleteComplainRecord(@PathVariable Long id) {
-        return SuccessTip.create(complainRecordService.deleteMaster(id));
-    }
+        var page = new Page<ComplainRecordRecord>();
+        page.setSize(pageSize).setCurrent(pageNum);
 
-    @Permission(ComplainRecordPermission.COMPLAINRECORD_VIEW)
-    @ApiOperation(value = "ComplainRecord 列表信息", response = ComplainRecordRecord.class)
-    @GetMapping
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "pageNum", dataType = "Integer"),
-            @ApiImplicitParam(name = "pageSize", dataType = "Integer"),
-            @ApiImplicitParam(name = "search", dataType = "String"),
-            @ApiImplicitParam(name = "id", dataType = "Long"),
-            @ApiImplicitParam(name = "complainantId", dataType = "Long"),
-            @ApiImplicitParam(name = "relationOrderId", dataType = "Long"),
-            @ApiImplicitParam(name = "title", dataType = "String"),
-            @ApiImplicitParam(name = "content", dataType = "String"),
-            @ApiImplicitParam(name = "credentialLink", dataType = "String"),
-            @ApiImplicitParam(name = "status", dataType = "String"),
-            @ApiImplicitParam(name = "orderBy", dataType = "String"),
-            @ApiImplicitParam(name = "sort", dataType = "String")
-    })
-    public Tip queryComplainRecordPage(Page<ComplainRecordRecord> page,
-                                       @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
-                                       @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
-                                       // for tag feature query
-                                       @RequestParam(name = "tag", required = false) String tag,
-                                       // end tag
-                                       @RequestParam(name = "search", required = false) String search,
-
-                                       @RequestParam(name = "complainantId", required = false) Long complainantId,
-
-                                       @RequestParam(name = "relationOrderId", required = false) Long relationOrderId,
-
-                                       @RequestParam(name = "title", required = false) String title,
-
-                                       @RequestParam(name = "content", required = false) String content,
-
-                                       @RequestParam(name = "credentialLink", required = false) String credentialLink,
-
-                                       @RequestParam(name = "status", required = false) String status,
-                                       @RequestParam(name = "orderBy", required = false) String orderBy,
-                                       @RequestParam(name = "sort", required = false) String sort) {
-
-        if (orderBy != null && orderBy.length() > 0) {
-            if (sort != null && sort.length() > 0) {
-                String pattern = "(ASC|DESC|asc|desc)";
-                if (!sort.matches(pattern)) {
-                    throw new BusinessException(BusinessCode.BadRequest.getCode(), "sort must be ASC or DESC");//此处异常类型根据实际情况而定
-                }
-            } else {
-                sort = "ASC";
-            }
-            orderBy = "`" + orderBy + "`" + " " + sort;
-        }
-        page.setCurrent(pageNum);
-        page.setSize(pageSize);
-
-        ComplainRecordRecord record = new ComplainRecordRecord();
-        record.setComplainantId(complainantId);
-        record.setRelationOrderId(relationOrderId);
-        record.setTitle(title);
-        record.setContent(content);
-        record.setCredentialLink(credentialLink);
-        record.setStatus(ComplainRecordStatus.valueOf(status));
-
-
-        List<ComplainRecordRecord> complainRecordPage = queryComplainRecordDao.findComplainRecordPage(page, record, tag, search, orderBy, null, null);
-
-
-        page.setRecords(complainRecordPage);
-
+        page.setRecords(queryComplainRecordDao.findComplainRecordPage(page,complainRecord,null,null,null,null,null));
         return SuccessTip.create(page);
     }
+
 }
 
