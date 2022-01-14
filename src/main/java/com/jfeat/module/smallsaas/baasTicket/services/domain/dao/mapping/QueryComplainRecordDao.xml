@@ -9,7 +9,14 @@
     </sql>
 
 
-    <select id="queryMasterModel" resultType="ComplainRecordModel">
+    <resultMap id="ComplainRecordMap" type="ComplainRecordRecord">
+        <id property="id" column="id"/>
+        <association property="replyRecordList" column="id"
+                     select="com.jfeat.module.smallsaas.baasTicket.services.domain.service.ComplainRecordService.queryByComplainId"/>
+    </resultMap>
+
+
+    <select id="queryMasterModel" resultMap="ComplainRecordMap">
         SELECT nft_complain_record.*
         FROM nft_complain_record
         WHERE nft_complain_record.id = #{id}
@@ -17,7 +24,7 @@
     </select>
 
 
-    <select id="findComplainRecordPage" resultType="ComplainRecordRecord" parameterType="ComplainRecordRecord">
+    <select id="findComplainRecordPage" resultMap="ComplainRecordMap" parameterType="ComplainRecordRecord">
         SELECT
         <include refid="Base_Column_List"/>
 

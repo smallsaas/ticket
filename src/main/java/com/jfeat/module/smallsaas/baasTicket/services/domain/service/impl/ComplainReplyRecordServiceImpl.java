@@ -1,9 +1,9 @@
 package com.jfeat.module.smallsaas.baasTicket.services.domain.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.jfeat.crud.base.exception.BusinessCode;
 import com.jfeat.crud.base.exception.BusinessException;
 import com.jfeat.module.smallsaas.baasTicket.services.domain.command.Complainrecord.ComplainReplyGenerateCommand;
-import com.jfeat.module.smallsaas.baasTicket.services.domain.dao.QueryComplainReplyRecordDao;
 import com.jfeat.module.smallsaas.baasTicket.services.domain.service.ComplainRecordService;
 import com.jfeat.module.smallsaas.baasTicket.services.domain.service.ComplainReplyRecordService;
 import com.jfeat.module.smallsaas.baasTicket.services.gen.crud.service.impl.CRUDComplainReplyRecordServiceImpl;
@@ -12,6 +12,7 @@ import com.jfeat.module.smallsaas.baasTicket.services.gen.persistence.model.Comp
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.Optional;
 
 @Service("complainReplyRecordService")
@@ -33,5 +34,11 @@ public class ComplainReplyRecordServiceImpl extends CRUDComplainReplyRecordServi
                 .isManagerReply(command.getIsManagerReply())
                 .content(command.getContent())
                 .build());
+    }
+
+    @Override
+    public List<ComplainReplyRecord> queryByComplainId(Long complainId) {
+        return complainReplyRecordMapper.selectList(new LambdaQueryWrapper<ComplainReplyRecord>()
+                .eq(ComplainReplyRecord::getComplainRecordId, complainId));
     }
 }
