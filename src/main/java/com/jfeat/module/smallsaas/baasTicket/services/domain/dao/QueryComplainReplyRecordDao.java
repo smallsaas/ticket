@@ -33,10 +33,4 @@ public interface QueryComplainReplyRecordDao extends QueryMasterDao<ComplainRepl
      * Query entity model list for slave items
      */
     List<ComplainReplyRecordModel> queryMasterModelList(@Param("masterId") Object masterId);
-
-    @Select(" select COUNT(*) from nft_player where id=#{replyerId};")
-    Integer IsUserExistenceByReplyerId(Long replyerId);
-
-    @Select(" select COUNT(*) from nft_manager_player_relation where player_id=#{replyerId};")
-    Integer IsManagerByReplyerId(Long replyerId);
 }

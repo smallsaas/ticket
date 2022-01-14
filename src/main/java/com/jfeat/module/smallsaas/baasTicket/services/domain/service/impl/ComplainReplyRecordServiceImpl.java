@@ -30,7 +30,7 @@ public class ComplainReplyRecordServiceImpl extends CRUDComplainReplyRecordServi
 
         createMaster(ComplainReplyRecord.builder()
                 .complainRecordId(command.getComplainRecordId())
-                .replyerId(command.getReplierId())
+                .replierId(command.getReplierId())
                 .isManagerReply(command.getIsManagerReply())
                 .content(command.getContent())
                 .build());

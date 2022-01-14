@@ -12,7 +12,7 @@
     <resultMap id="ComplainRecordMap" type="ComplainRecordRecord">
         <id property="id" column="id"/>
         <association property="replyRecordList" column="id"
-                     select="com.jfeat.module.smallsaas.baasTicket.services.domain.service.ComplainRecordService.queryByComplainId"/>
+                     select="com.jfeat.module.smallsaas.baasTicket.services.gen.persistence.dao.ComplainReplyRecordMapper.queryByComplainId"/>
     </resultMap>
 
 
