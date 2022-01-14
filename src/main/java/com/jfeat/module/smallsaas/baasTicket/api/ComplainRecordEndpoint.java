@@ -1,40 +1,23 @@
-
 package com.jfeat.module.smallsaas.baasTicket.api;
 
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.jfeat.am.common.annotation.Permission;
 import com.jfeat.crud.base.annotation.BusinessLog;
-import com.jfeat.crud.base.exception.BusinessCode;
-import com.jfeat.crud.base.exception.BusinessException;
 import com.jfeat.crud.base.tips.SuccessTip;
 import com.jfeat.crud.base.tips.Tip;
-import com.jfeat.module.smallsaas.baasTicket.api.permission.ComplainRecordPermission;
 import com.jfeat.module.smallsaas.baasTicket.api.request.ComplainGenerateRequest;
 import com.jfeat.module.smallsaas.baasTicket.services.domain.dao.QueryComplainRecordDao;
 import com.jfeat.module.smallsaas.baasTicket.services.domain.model.ComplainRecordRecord;
 import com.jfeat.module.smallsaas.baasTicket.services.domain.service.ComplainRecordService;
 import com.jfeat.module.smallsaas.baasTicket.services.gen.persistence.model.ComplainRecord.ComplainRecord;
-import com.jfeat.module.smallsaas.baasTicket.services.gen.persistence.model.ComplainRecord.ComplainRecordStatus;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 import static com.jfeat.module.smallsaas.baasTicket.services.domain.converter.ComplainConverter.COMPLAIN;
 
-/**
- * <p>
- * api
- * </p>
- *
- * @author Code generator
- * @since 2022-01-11
- */
 @RestController
 @Api("ComplainRecord")
 @RequestMapping("/api/u/complain")
@@ -55,20 +38,32 @@ public class ComplainRecordEndpoint {
         return SuccessTip.create();
     }
 
-    @Permission(ComplainRecordPermission.COMPLAINRECORD_VIEW)
+    @GetMapping
+    @ApiOperation(value = "查询申诉记录", response = ComplainRecord.class)
+    public Tip getComplainRecord(@RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
+                                 @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize) {
+
+        var complainRecord = new ComplainRecordRecord();
+        var page = new Page<ComplainRecordRecord>();
+        page.setSize(pageSize).setCurrent(pageNum);
+
+        page.setRecords(queryComplainRecordDao.findComplainRecordPage(page, complainRecord, null, null, null, null, null));
+        return SuccessTip.create(page);
+    }
+
     @GetMapping("/{complainantId}")
-    @ApiOperation(value = "申诉人ID查询申诉记录", response = ComplainRecord.class)
+    @ApiOperation(value = "根据申诉人ID查询申诉记录", response = ComplainRecord.class)
     public Tip getComplainRecord(@PathVariable Long complainantId,
                                  @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                  @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize) {
 
-        var complainRecord= new ComplainRecordRecord();
+        var complainRecord = new ComplainRecordRecord();
         complainRecord.setComplainantId(complainantId);
 
         var page = new Page<ComplainRecordRecord>();
         page.setSize(pageSize).setCurrent(pageNum);
 
-        page.setRecords(queryComplainRecordDao.findComplainRecordPage(page,complainRecord,null,null,null,null,null));
+        page.setRecords(queryComplainRecordDao.findComplainRecordPage(page, complainRecord, null, null, null, null, null));
         return SuccessTip.create(page);
     }
 

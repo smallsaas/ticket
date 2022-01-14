@@ -9,6 +9,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class ComplainReplyGenerateRequest {
     private Long complainRecordId;
-    private Long replyerId;
+    private Long replierId;
+    private Integer isManagerReply;
     private String content;
 }
