@@ -7,7 +7,7 @@
                type="com.jfeat.module.smallsaas.baasTicket.services.gen.persistence.model.ComplainReplyRecord">
         <id column="id" property="id"/>
         <result column="complain_record_id" property="complainRecordId"/>
-        <result column="replyer_id" property="replyerId"/>
+        <result column="replier_id" property="replierId"/>
         <result column="content" property="content"/>
         <result column="is_manager_reply" property="isManagerReply"/>
         <result column="reply_time" property="replyTime"/>
@@ -17,7 +17,7 @@
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id
-        , complain_record_id, replyer_id, content, is_manager_reply, reply_time, create_time
+        , complain_record_id, replier_id, content, is_manager_reply, reply_time, create_time
     </sql>
 
 </mapper>

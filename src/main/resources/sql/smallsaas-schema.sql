@@ -28,7 +28,7 @@ CREATE TABLE `nft_complain_reply_record`
 (
     `id`                 bigint(20) NOT NULL AUTO_INCREMENT COMMENT '记录ID',
     `complain_record_id` bigint(20) NOT NULL COMMENT '申诉单ID',
-    `replyer_id`         bigint(20) DEFAULT NULL COMMENT '回复人ID',
+    `replier_id`         bigint(20) DEFAULT NULL COMMENT '回复人ID',
     `content`            varchar(256) NOT NULL COMMENT '回复内容',
     `is_manager_reply`   tinyint(255) NOT NULL DEFAULT '0' COMMENT '是否管理员回复',
     `reply_time`         datetime     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '回复时间',

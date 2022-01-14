@@ -5,7 +5,7 @@
         nft_complain_reply_record
         .
         id
-        , nft_complain_reply_record.complain_record_id AS complainRecordId, nft_complain_reply_record.replyer_id AS replyerId, nft_complain_reply_record.content, nft_complain_reply_record.is_manager_reply AS isManagerReply, nft_complain_reply_record.reply_time AS replyTime, nft_complain_reply_record.create_time AS createTime
+        , nft_complain_reply_record.complain_record_id AS complainRecordId, nft_complain_reply_record.replier_id AS replierId, nft_complain_reply_record.content, nft_complain_reply_record.is_manager_reply AS isManagerReply, nft_complain_reply_record.reply_time AS replyTime, nft_complain_reply_record.create_time AS createTime
     </sql>
 
 
@@ -39,8 +39,8 @@
         </if>
 
 
-        <if test="record.replyerId != null and record.replyerId>0 ">
-            AND nft_complain_reply_record.replyer_id LIKE CONCAT('%',#{record.replyerId},'%')
+        <if test="record.replierId != null and record.replierId>0 ">
+            AND nft_complain_reply_record.replier_id LIKE CONCAT('%',#{record.replierId},'%')
         </if>
         <if test="record.content != null and record.content!= ''">
             AND nft_complain_reply_record.content LIKE CONCAT('%',#{record.content},'%')

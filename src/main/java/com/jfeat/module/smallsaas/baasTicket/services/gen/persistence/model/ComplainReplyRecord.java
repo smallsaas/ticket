@@ -131,8 +131,6 @@ public class ComplainReplyRecord extends Model<ComplainReplyRecord> {
 
     public static final String COMPLAIN_RECORD_ID = "complain_record_id";
 
-    public static final String REPLYER_ID = "replyer_id";
-
     public static final String CONTENT = "content";
 
     public static final String IS_MANAGER_REPLY = "is_manager_reply";
