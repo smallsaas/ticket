@@ -53,7 +53,7 @@ public class ComplainRecordEndpoint {
 
     @GetMapping("/{complainantId}")
     @ApiOperation(value = "根据申诉人ID查询申诉记录", response = ComplainRecord.class)
-    public Tip getComplainRecord(@PathVariable Long complainantId,
+    public Tip getComplainRecordByComplainantId(@PathVariable Long complainantId,
                                  @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                  @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize) {
 
