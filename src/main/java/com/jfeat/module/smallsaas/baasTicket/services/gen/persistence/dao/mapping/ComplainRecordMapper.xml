@@ -8,6 +8,7 @@
         <id column="id" property="id"/>
         <result column="complainant_id" property="complainantId"/>
         <result column="relation_order_id" property="relationOrderId"/>
+        <result column="complainant_role" property="complainantRole"/>
         <result column="title" property="title"/>
         <result column="content" property="content"/>
         <result column="credential_link" property="credentialLink"/>
@@ -19,7 +20,7 @@
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id
-        , complainant_id, relation_order_id, title, content, credential_link, status,createTime,updateTime
+        , complainant_id, relation_order_id, complainant_role, title, content, credential_link, status,createTime,updateTime
     </sql>
 
 </mapper>
