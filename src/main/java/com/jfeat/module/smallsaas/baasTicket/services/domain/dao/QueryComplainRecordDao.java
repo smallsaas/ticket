@@ -25,7 +25,7 @@ public interface QueryComplainRecordDao extends QueryMasterDao<ComplainRecord> {
     /*
      * Query entity model for details
      */
-    ComplainRecordModel queryMasterModel(@Param("id") Long id);
+    ComplainRecordRecord queryMasterModel(@Param("id") Long id);
 
 
     /*
