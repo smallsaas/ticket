@@ -51,6 +51,12 @@ public class ComplainRecordEndpoint {
         return SuccessTip.create(page);
     }
 
+    @GetMapping("/{id}")
+    @ApiOperation(value = "查询申诉记录", response = ComplainRecord.class)
+    public Tip getComplainRecordById(@PathVariable Long id) {
+        return SuccessTip.create(queryComplainRecordDao.queryMasterModel(id));
+    }
+
     @GetMapping("/{complainantId}")
     @ApiOperation(value = "根据申诉人ID查询申诉记录", response = ComplainRecordRecord.class)
     public Tip getComplainRecordByComplainantId(@PathVariable Long complainantId,
