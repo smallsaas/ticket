@@ -9,4 +9,6 @@ import com.jfeat.module.smallsaas.baasTicket.services.gen.crud.service.CRUDCompl
 public interface ComplainRecordService extends CRUDComplainRecordService {
 
     void createComplain(ComplainGenerateCommand command);
+
+    void complainEnd(Long complainId ,Long complainantId);
 }
