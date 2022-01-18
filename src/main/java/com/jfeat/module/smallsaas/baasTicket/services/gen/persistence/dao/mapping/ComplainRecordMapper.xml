@@ -15,12 +15,13 @@
         <result column="status" property="status"/>
         <result column="createTime" property="createTime"/>
         <result column="updateTime" property="updateTime"/>
+        <result column="request_type" property="requestType"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id
-        , complainant_id, relation_order_id, complainant_role, title, content, credential_link, status,createTime,updateTime
+        , complainant_id, relation_order_id, complainant_role, title, content, credential_link, status,createTime,updateTime,request_type
     </sql>
 
 </mapper>

@@ -41,13 +41,13 @@ public class ComplainRecordEndpoint {
     @GetMapping
     @ApiOperation(value = "查询申诉记录", response = ComplainRecord.class)
     public Tip getComplainRecord(@RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
-                                 @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize) {
+                                 @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
+                                 @RequestParam(name = "requestType", required = false, defaultValue = "") String requestType) {
 
-        var complainRecord = new ComplainRecordRecord();
         var page = new Page<ComplainRecordRecord>();
         page.setSize(pageSize).setCurrent(pageNum);
 
-        page.setRecords(queryComplainRecordDao.findComplainRecordPage(page, complainRecord, null, null, null, null, null));
+        page.setRecords(queryComplainRecordDao.queryComplainRecordPage(page, requestType));
         return SuccessTip.create(page);
     }
 
@@ -57,19 +57,16 @@ public class ComplainRecordEndpoint {
         return SuccessTip.create(queryComplainRecordDao.queryMasterModel(id));
     }
 
-    @GetMapping("/{complainantId}")
+    @GetMapping("/ComplainRecordByComplainantId/{complainantId}")
     @ApiOperation(value = "根据申诉人ID查询申诉记录", response = ComplainRecordRecord.class)
     public Tip getComplainRecordByComplainantId(@PathVariable Long complainantId,
                                  @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
-                                 @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize) {
-
-        var complainRecord = new ComplainRecordRecord();
-        complainRecord.setComplainantId(complainantId);
+                                 @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
+                                 @RequestParam(name = "requestType", required = false, defaultValue = "") String requestType) {
 
         var page = new Page<ComplainRecordRecord>();
         page.setSize(pageSize).setCurrent(pageNum);
-
-        page.setRecords(queryComplainRecordDao.findComplainRecordPage(page, complainRecord, null, null, null, null, null));
+        page.setRecords(queryComplainRecordDao.queryComplainRecordPageByComplainantId(page,complainantId, requestType));
         return SuccessTip.create(page);
     }
 

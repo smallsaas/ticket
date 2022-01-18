@@ -34,6 +34,7 @@ public class ComplainRecordServiceImpl extends CRUDComplainRecordServiceImpl imp
                 .complainantId(command.getComplainantId())
                 .relationOrderId(command.getRelationOrderId())
                 .title(command.getTitle())
+                .requestType(command.getRequestType())
                 .content(command.getContent())
                 .credentialLink(command.getCredentialLink())
                 .complainantRole(command.getComplainantRole())

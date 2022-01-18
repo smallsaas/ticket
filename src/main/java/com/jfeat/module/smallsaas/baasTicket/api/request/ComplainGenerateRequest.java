@@ -16,4 +16,5 @@ public class ComplainGenerateRequest {
     private String credentialLink;
     private Long complainantId;
     private String complainantRole;
+    private String requestType;
 }

@@ -63,4 +63,11 @@ public class ComplainRecord extends Model<ComplainRecord> {
      * 记录更新时间
      */
     private LocalDateTime updateTime;
+
+    /**
+     * 申诉类型 反馈 FEEDBACK 订单纠纷 ORDER_DISPUTES
+     *
+     */
+    private ComplainType requestType;
+
 }

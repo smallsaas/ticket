@@ -6,6 +6,7 @@ import com.jfeat.module.smallsaas.baasTicket.services.domain.model.ComplainRecor
 import com.jfeat.module.smallsaas.baasTicket.services.gen.crud.model.ComplainRecordModel;
 import com.jfeat.module.smallsaas.baasTicket.services.gen.persistence.model.ComplainRecord.ComplainRecord;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.Date;
 import java.util.List;
@@ -32,4 +33,11 @@ public interface QueryComplainRecordDao extends QueryMasterDao<ComplainRecord> {
      * Query entity model list for slave items
      */
     List<ComplainRecordModel> queryMasterModelList(@Param("masterId") Object masterId);
+
+    @Select("select * from nft_complain_record Where request_type = #{requestType}")
+    List<ComplainRecordRecord> queryComplainRecordPage(Page<ComplainRecordRecord> page, @Param("requestType") String requestType);
+
+    @Select("select * from nft_complain_record Where complainant_id = #{complainantId} AND request_type  LIKE CONCAT('%',#{requestType},'%')  ")
+    List<ComplainRecordRecord> queryComplainRecordPageByComplainantId(Page<ComplainRecordRecord> page,@Param("complainantId") Long complainantId,
+                                                      @Param("requestType") String requestType);
 }
