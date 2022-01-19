@@ -7,7 +7,7 @@ import com.jfeat.module.smallsaas.ticket.services.domain.command.Complainrecord.
 import com.jfeat.module.smallsaas.ticket.services.domain.service.ComplainRecordService;
 import com.jfeat.module.smallsaas.ticket.services.domain.service.ComplainReplyRecordService;
 import com.jfeat.module.smallsaas.ticket.services.gen.crud.service.impl.CRUDComplainReplyRecordServiceImpl;
-import com.jfeat.module.smallsaas.ticket.services.gen.persistence.model.ComplainRecord.ComplainRecordStatus;
+import com.jfeat.module.smallsaas.ticket.services.gen.persistence.model.complainrecord.ComplainRecordStatus;
 import com.jfeat.module.smallsaas.ticket.services.gen.persistence.model.ComplainReplyRecord;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
 package com.jfeat.module.smallsaas.ticket.services.gen.persistence.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.jfeat.module.smallsaas.ticket.services.gen.persistence.model.ComplainRecord.ComplainRecord;
+import com.jfeat.module.smallsaas.ticket.services.gen.persistence.model.complainrecord.ComplainRecord;
 
 /**
  * <p>

@@ -1,4 +1,4 @@
-package com.jfeat.module.smallsaas.ticket.services.gen.persistence.model.ComplainRecord;
+package com.jfeat.module.smallsaas.ticket.services.gen.persistence.model.complainrecord;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -68,6 +68,6 @@ public class ComplainRecord extends Model<ComplainRecord> {
      * 申诉类型 反馈 FEEDBACK 订单纠纷 ORDER_DISPUTES
      *
      */
-    private ComplainType requestType;
+    private ComplainRequestType requestType;
 
 }

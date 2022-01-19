@@ -4,7 +4,7 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap"
-               type="com.jfeat.module.smallsaas.ticket.services.gen.persistence.model.ComplainRecord.ComplainRecord">
+               type="com.jfeat.module.smallsaas.ticket.services.gen.persistence.model.complainrecord.ComplainRecord">
         <id column="id" property="id"/>
         <result column="complainant_id" property="complainantId"/>
         <result column="relation_order_id" property="relationOrderId"/>

@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.jfeat.crud.plus.impl.CRUDServiceOnlyImpl;
 import com.jfeat.module.smallsaas.ticket.services.gen.crud.service.CRUDComplainRecordService;
 import com.jfeat.module.smallsaas.ticket.services.gen.persistence.dao.ComplainRecordMapper;
-import com.jfeat.module.smallsaas.ticket.services.gen.persistence.model.ComplainRecord.ComplainRecord;
+import com.jfeat.module.smallsaas.ticket.services.gen.persistence.model.complainrecord.ComplainRecord;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

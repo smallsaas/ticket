@@ -1,6 +1,6 @@
 package com.jfeat.module.smallsaas.ticket.services.domain.command.Complain;
 
-import com.jfeat.module.smallsaas.ticket.services.gen.persistence.model.ComplainRecord.ComplainType;
+import com.jfeat.module.smallsaas.ticket.services.gen.persistence.model.complainrecord.ComplainRequestType;
 import lombok.Data;
 
 import java.util.Objects;
@@ -12,7 +12,7 @@ public class ComplainGenerateCommand {
     private Long complainantId;
     private Long relationOrderId;
     private String title;
-    private ComplainType requestType;
+    private ComplainRequestType requestType;
     private String content;
     private String credentialLink;
     private String complainantRole;
@@ -23,7 +23,7 @@ public class ComplainGenerateCommand {
         this.content = content;
         this.credentialLink = credentialLink;
         this.title = title;
-        this.requestType = ComplainType.valueOf(requestType);
+        this.requestType = ComplainRequestType.valueOf(requestType);
         checkArgument(Objects.nonNull(relationOrderId), "投诉订单号为空");
         checkArgument(Objects.nonNull(complainantId), "申述人为空");
         checkArgument(Objects.nonNull(title), "标题不可为空");

@@ -9,7 +9,7 @@ import com.jfeat.module.smallsaas.ticket.api.request.ComplainGenerateRequest;
 import com.jfeat.module.smallsaas.ticket.services.domain.dao.QueryComplainRecordDao;
 import com.jfeat.module.smallsaas.ticket.services.domain.model.ComplainRecordRecord;
 import com.jfeat.module.smallsaas.ticket.services.domain.service.ComplainRecordService;
-import com.jfeat.module.smallsaas.ticket.services.gen.persistence.model.ComplainRecord.ComplainRecord;
+import com.jfeat.module.smallsaas.ticket.services.gen.persistence.model.complainrecord.ComplainRecord;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;

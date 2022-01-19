@@ -1,7 +1,7 @@
 package com.jfeat.module.smallsaas.ticket.services.gen.crud.service;
 
 import com.jfeat.crud.plus.CRUDServiceOnly;
-import com.jfeat.module.smallsaas.ticket.services.gen.persistence.model.ComplainRecord.ComplainRecord;
+import com.jfeat.module.smallsaas.ticket.services.gen.persistence.model.complainrecord.ComplainRecord;
 
 /**
  * <p>

@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.jfeat.crud.plus.QueryMasterDao;
 import com.jfeat.module.smallsaas.ticket.services.domain.model.ComplainRecordRecord;
 import com.jfeat.module.smallsaas.ticket.services.gen.crud.model.ComplainRecordModel;
-import com.jfeat.module.smallsaas.ticket.services.gen.persistence.model.ComplainRecord.ComplainRecord;
+import com.jfeat.module.smallsaas.ticket.services.gen.persistence.model.complainrecord.ComplainRecord;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
