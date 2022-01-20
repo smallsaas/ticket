@@ -2,6 +2,7 @@ package com.jfeat.module.smallsaas.ticket.services.domain.command.Complain;
 
 import com.jfeat.module.smallsaas.ticket.services.gen.persistence.model.complainrecord.ComplainRequestType;
 import lombok.Data;
+import org.apache.commons.lang3.EnumUtils;
 
 import java.util.Objects;
 
@@ -23,7 +24,7 @@ public class ComplainGenerateCommand {
         this.content = content;
         this.credentialLink = credentialLink;
         this.title = title;
-        this.requestType = ComplainRequestType.valueOf(requestType);
+        this.requestType = EnumUtils.getEnum(ComplainRequestType.class, requestType);
         checkArgument(Objects.nonNull(relationOrderId), "投诉订单号为空");
         checkArgument(Objects.nonNull(complainantId), "申述人为空");
         checkArgument(Objects.nonNull(title), "标题不可为空");
