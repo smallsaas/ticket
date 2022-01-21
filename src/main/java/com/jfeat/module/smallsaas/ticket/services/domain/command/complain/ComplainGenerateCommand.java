@@ -25,7 +25,7 @@ public class ComplainGenerateCommand {
         this.credentialLink = credentialLink;
         this.title = title;
         this.requestType = EnumUtils.getEnum(ComplainRequestType.class, requestType);
-        checkArgument(this.requestType == ComplainRequestType.ORDER_DISPUTES && Objects.nonNull(relationOrderId), "投诉订单号为空");
+        checkArgument(this.requestType != ComplainRequestType.ORDER_DISPUTES || Objects.nonNull(relationOrderId), "投诉订单号为空");
         checkArgument(Objects.nonNull(complainantId), "申述人为空");
         checkArgument(Objects.nonNull(title), "标题不可为空");
         checkArgument(Objects.nonNull(content), "申诉内容不可为空");
