@@ -19,20 +19,17 @@ import javax.annotation.Resource;
 import static com.jfeat.module.smallsaas.ticket.services.domain.converter.ComplainConverter.COMPLAIN;
 
 @RestController
-@Api("ComplainRecord")
+@Api("[投诉/申诉]API")
 @RequestMapping("/api/u/complain")
 public class ComplainRecordEndpoint {
-
     @Resource
     private ComplainRecordService complainRecordService;
-
     @Resource
     private QueryComplainRecordDao queryComplainRecordDao;
 
-
     @BusinessLog(name = "ComplainRecord", value = "create ComplainRecord")
     @PostMapping
-    @ApiOperation(value = "新建 ComplainRecord", response = ComplainRecord.class)
+    @ApiOperation(value = "创建投诉记录", response = ComplainRecord.class)
     public Tip createComplainRecord(@RequestBody ComplainGenerateRequest request) {
         complainRecordService.createComplain(COMPLAIN.toCommand(request));
         return SuccessTip.create();
