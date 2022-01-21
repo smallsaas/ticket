@@ -7,6 +7,7 @@ import com.jfeat.module.smallsaas.ticket.api.request.ComplainGenerateRequest;
 import com.jfeat.module.smallsaas.ticket.api.request.CreateFeedBackRequest;
 import com.jfeat.module.smallsaas.ticket.services.domain.service.ComplainRecordService;
 import com.jfeat.module.smallsaas.ticket.services.gen.persistence.model.complainrecord.ComplainRecord;
+import com.jfeat.module.smallsaas.ticket.services.gen.persistence.model.complainrecord.ComplainRequestType;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,7 +30,7 @@ public class FeedbackEndpoint {
     @PostMapping
     @ApiOperation(value = "创建反馈记录", response = ComplainRecord.class)
     public Tip createFeedbackRecord(@RequestBody CreateFeedBackRequest request) {
-        complainRecordService.createComplain(COMPLAIN.toCommand(request));
+        complainRecordService.createComplain(COMPLAIN.toCommand(request, ComplainRequestType.FEEDBACK.name()));
         return SuccessTip.create();
     }
 }
