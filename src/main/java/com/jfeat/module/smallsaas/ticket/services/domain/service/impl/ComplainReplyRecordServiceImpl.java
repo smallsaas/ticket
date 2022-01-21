@@ -3,7 +3,7 @@ package com.jfeat.module.smallsaas.ticket.services.domain.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.jfeat.crud.base.exception.BusinessCode;
 import com.jfeat.crud.base.exception.BusinessException;
-import com.jfeat.module.smallsaas.ticket.services.domain.command.Complainrecord.ComplainReplyGenerateCommand;
+import com.jfeat.module.smallsaas.ticket.services.domain.command.complainrecord.ComplainReplyGenerateCommand;
 import com.jfeat.module.smallsaas.ticket.services.domain.service.ComplainRecordService;
 import com.jfeat.module.smallsaas.ticket.services.domain.service.ComplainReplyRecordService;
 import com.jfeat.module.smallsaas.ticket.services.gen.crud.service.impl.CRUDComplainReplyRecordServiceImpl;

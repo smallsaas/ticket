@@ -2,7 +2,7 @@ package com.jfeat.module.smallsaas.ticket.services.domain.service.impl;
 
 import com.jfeat.crud.base.exception.BusinessCode;
 import com.jfeat.crud.base.exception.BusinessException;
-import com.jfeat.module.smallsaas.ticket.services.domain.command.Complain.ComplainGenerateCommand;
+import com.jfeat.module.smallsaas.ticket.services.domain.command.complain.ComplainGenerateCommand;
 import com.jfeat.module.smallsaas.ticket.services.domain.service.ComplainRecordService;
 import com.jfeat.module.smallsaas.ticket.services.gen.crud.service.impl.CRUDComplainRecordServiceImpl;
 import com.jfeat.module.smallsaas.ticket.services.gen.persistence.model.complainrecord.ComplainRecord;

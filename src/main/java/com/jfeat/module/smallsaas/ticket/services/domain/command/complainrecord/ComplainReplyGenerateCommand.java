@@ -1,4 +1,4 @@
-package com.jfeat.module.smallsaas.ticket.services.domain.command.Complainrecord;
+package com.jfeat.module.smallsaas.ticket.services.domain.command.complainrecord;
 
 import lombok.Data;
 

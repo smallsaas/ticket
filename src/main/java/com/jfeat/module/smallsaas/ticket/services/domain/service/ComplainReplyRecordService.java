@@ -1,6 +1,6 @@
 package com.jfeat.module.smallsaas.ticket.services.domain.service;
 
-import com.jfeat.module.smallsaas.ticket.services.domain.command.Complainrecord.ComplainReplyGenerateCommand;
+import com.jfeat.module.smallsaas.ticket.services.domain.command.complainrecord.ComplainReplyGenerateCommand;
 import com.jfeat.module.smallsaas.ticket.services.gen.crud.service.CRUDComplainReplyRecordService;
 import com.jfeat.module.smallsaas.ticket.services.gen.persistence.model.ComplainReplyRecord;
 
