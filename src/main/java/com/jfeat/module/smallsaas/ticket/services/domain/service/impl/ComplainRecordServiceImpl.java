@@ -3,12 +3,15 @@ package com.jfeat.module.smallsaas.ticket.services.domain.service.impl;
 import com.jfeat.crud.base.exception.BusinessCode;
 import com.jfeat.crud.base.exception.BusinessException;
 import com.jfeat.module.smallsaas.ticket.services.domain.command.complain.ComplainGenerateCommand;
+import com.jfeat.module.smallsaas.ticket.services.domain.dao.QueryComplainRecordDao;
 import com.jfeat.module.smallsaas.ticket.services.domain.service.ComplainRecordService;
 import com.jfeat.module.smallsaas.ticket.services.gen.crud.service.impl.CRUDComplainRecordServiceImpl;
 import com.jfeat.module.smallsaas.ticket.services.gen.persistence.model.complainrecord.ComplainRecord;
 import com.jfeat.module.smallsaas.ticket.services.gen.persistence.model.complainrecord.ComplainRecordStatus;
+import com.jfeat.module.smallsaas.ticket.services.gen.persistence.model.complainrecord.ComplainRequestType;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.Optional;
 /**
  * <p>
@@ -22,6 +25,9 @@ import java.util.Optional;
 @Service("complainRecordService")
 public class ComplainRecordServiceImpl extends CRUDComplainRecordServiceImpl implements ComplainRecordService {
 
+    @Resource
+    private QueryComplainRecordDao queryComplainRecordDao;
+
     @Override
     protected String entityName() {
         return "ComplainRecord";
@@ -30,6 +36,11 @@ public class ComplainRecordServiceImpl extends CRUDComplainRecordServiceImpl imp
 
     @Override
     public void createComplain(ComplainGenerateCommand command) {
+
+        if(command.getRequestType().equals(ComplainRequestType.ORDER_DISPUTES)){
+            updateOrderStatus(command.getRelationOrderId());
+        }
+
         this.createMaster(ComplainRecord.builder()
                 .complainantId(command.getComplainantId())
                 .relationOrderId(command.getRelationOrderId())
@@ -53,5 +64,16 @@ public class ComplainRecordServiceImpl extends CRUDComplainRecordServiceImpl imp
         }else{
              new BusinessException(BusinessCode.BadRequest, String.format("您不是申诉单号[ID:%s]的申诉人无法改变申诉单状态", complainId));
         }
+    }
+
+    private void updateOrderStatus(Long orderId) {
+        if (OrderExist(orderId))
+            queryComplainRecordDao.changOrderStatus(orderId);
+        else
+            new BusinessException(BusinessCode.BadRequest,String.format("相关订单[id:%s]不存在",orderId));
+    }
+
+    private boolean OrderExist(Long complainId){
+        return queryComplainRecordDao.OrderExist(complainId)==1;
     }
 }

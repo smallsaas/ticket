@@ -7,6 +7,7 @@ import com.jfeat.module.smallsaas.ticket.services.gen.crud.model.ComplainRecordM
 import com.jfeat.module.smallsaas.ticket.services.gen.persistence.model.complainrecord.ComplainRecord;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.Date;
 import java.util.List;
@@ -40,4 +41,10 @@ public interface QueryComplainRecordDao extends QueryMasterDao<ComplainRecord> {
     @Select("select * from nft_complain_record Where complainant_id = #{complainantId} AND request_type  LIKE CONCAT('%',#{requestType},'%')  ")
     List<ComplainRecordRecord> queryComplainRecordPageByComplainantId(Page<ComplainRecordRecord> page,@Param("complainantId") Long complainantId,
                                                       @Param("requestType") String requestType);
+
+    @Select("select count(*)  from nft_wisp_order Where id = #{orderId}")
+    int OrderExist(@Param("orderId") Long orderId);
+
+    @Update("update nft_wisp_order set  status= 'COMPLAINING' where id = #{orderId};")
+    void changOrderStatus(@Param("orderId") Long orderId);
 }
