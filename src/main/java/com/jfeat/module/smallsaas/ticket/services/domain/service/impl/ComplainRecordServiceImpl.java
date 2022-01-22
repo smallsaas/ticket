@@ -61,7 +61,7 @@ public class ComplainRecordServiceImpl extends CRUDComplainRecordServiceImpl imp
         if (complainantId.equals(complain.getComplainantId())){
             complain.setStatus(ComplainRecordStatus.COMPLETED);
             this.updateMaster(complain);
-            updateOrderStatus(complainantId,"PAID");
+            updateOrderStatus(complain.getRelationOrderId(),"PAID");
         }else{
              new BusinessException(BusinessCode.BadRequest, String.format("您不是申诉单号[ID:%s]的申诉人无法改变申诉单状态", complainId));
         }
