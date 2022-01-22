@@ -45,6 +45,6 @@ public interface QueryComplainRecordDao extends QueryMasterDao<ComplainRecord> {
     @Select("select count(*)  from nft_wisp_order Where id = #{orderId}")
     int OrderExist(@Param("orderId") Long orderId);
 
-    @Update("update nft_wisp_order set  status= 'COMPLAINING' where id = #{orderId};")
-    void changOrderStatus(@Param("orderId") Long orderId);
+    @Update("update nft_wisp_order set  status= #{orderStatus} where id = #{orderId};")
+    void changOrderStatus(@Param("orderId") Long orderId,@Param("orderStatus") String orderStatus);
 }

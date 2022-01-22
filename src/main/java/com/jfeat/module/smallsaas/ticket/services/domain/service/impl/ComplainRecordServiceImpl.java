@@ -38,7 +38,7 @@ public class ComplainRecordServiceImpl extends CRUDComplainRecordServiceImpl imp
     public void createComplain(ComplainGenerateCommand command) {
 
         if(command.getRequestType().equals(ComplainRequestType.ORDER_DISPUTES)){
-            updateOrderStatus(command.getRelationOrderId());
+            updateOrderStatus(command.getRelationOrderId(),"COMPLAINING");
         }
 
         this.createMaster(ComplainRecord.builder()
@@ -61,14 +61,15 @@ public class ComplainRecordServiceImpl extends CRUDComplainRecordServiceImpl imp
         if (complainantId.equals(complain.getComplainantId())){
             complain.setStatus(ComplainRecordStatus.COMPLETED);
             this.updateMaster(complain);
+            updateOrderStatus(complainantId,"PAID");
         }else{
              new BusinessException(BusinessCode.BadRequest, String.format("您不是申诉单号[ID:%s]的申诉人无法改变申诉单状态", complainId));
         }
     }
 
-    private void updateOrderStatus(Long orderId) {
+    private void updateOrderStatus(Long orderId,String orderStatus) {
         if (OrderExist(orderId))
-            queryComplainRecordDao.changOrderStatus(orderId);
+            queryComplainRecordDao.changOrderStatus(orderId,orderStatus);
         else
             new BusinessException(BusinessCode.BadRequest,String.format("相关订单[id:%s]不存在",orderId));
     }
