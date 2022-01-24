@@ -35,10 +35,10 @@ public interface QueryComplainRecordDao extends QueryMasterDao<ComplainRecord> {
      */
     List<ComplainRecordModel> queryMasterModelList(@Param("masterId") Object masterId);
 
-    @Select("select * from nft_complain_record Where request_type = #{requestType}")
+    @Select("select * from nft_complain_record Where request_type = #{requestType} ORDER BY create_time DESC")
     List<ComplainRecordRecord> queryComplainRecordPage(Page<ComplainRecordRecord> page, @Param("requestType") String requestType);
 
-    @Select("select * from nft_complain_record Where complainant_id = #{complainantId} AND request_type  LIKE CONCAT('%',#{requestType},'%')  ")
+    @Select("select * from nft_complain_record Where complainant_id = #{complainantId} AND request_type  LIKE CONCAT('%',#{requestType},'%') ORDER BY create_time DESC")
     List<ComplainRecordRecord> queryComplainRecordPageByComplainantId(Page<ComplainRecordRecord> page,@Param("complainantId") Long complainantId,
                                                       @Param("requestType") String requestType);
 
