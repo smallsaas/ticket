@@ -15,7 +15,7 @@
     </parent>
 
     <properties>
-        <skipStandalone>false</skipStandalone>
+        <skipStandalone>true</skipStandalone>
         <lombok.version>1.18.4</lombok.version>
     </properties>
 
