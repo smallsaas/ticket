@@ -35,9 +35,7 @@ public interface QueryComplainRecordDao extends QueryMasterDao<ComplainRecord> {
      */
     List<ComplainRecordModel> queryMasterModelList(@Param("masterId") Object masterId);
 
-//    @Select("select nft_complain_record.*,nft_player.* from nft_complain_record\n" +
-//            "left join nft_player on nft_complain_record.complainant_id = nft_player.id\n" +
-//            "Where request_type = #{requestType} ORDER BY nft_complain_record.create_time DESC")
+    @Select("select * from nft_complain_record Where request_type = #{requestType} ORDER BY create_time DESC")
     List<ComplainRecordRecord> queryComplainRecordPage(Page<ComplainRecordRecord> page, @Param("requestType") String requestType);
 
     @Select("select * from nft_complain_record Where complainant_id = #{complainantId} AND request_type  LIKE CONCAT('%',#{requestType},'%') ORDER BY create_time DESC")

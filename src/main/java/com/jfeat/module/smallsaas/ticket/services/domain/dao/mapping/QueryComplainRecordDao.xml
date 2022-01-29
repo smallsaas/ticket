@@ -78,32 +78,32 @@
     -->
     </select>
 
-    <select id="queryComplainRecordPage" resultMap="complainInformation">
-        select nft_complain_record.*,nft_player.*
-        from nft_complain_record
-        left join nft_player on nft_complain_record.complainant_id = nft_player.id
-        Where request_type = #{requestType} ORDER BY nft_complain_record.create_time DESC
-    </select>
+<!--    <select id="queryComplainRecordPage" resultMap="complainInformation">-->
+<!--        select nft_complain_record.*,nft_player.*-->
+<!--        from nft_complain_record-->
+<!--        left join nft_player on nft_complain_record.complainant_id = nft_player.id-->
+<!--        Where request_type = #{requestType} ORDER BY nft_complain_record.create_time DESC-->
+<!--    </select>-->
 
-    <resultMap id="complainInformation" type="ComplainRecordModel">
-        <id column="id" property="id" />
-        <result column="complainant_id" property="complainantId" />
-        <result column="relationOrder_id" property="relationOrderId" />
-        <result column="complainant_role" property="complainantRole" />
-        <result column="title" property="title" />
-        <result column="content" property="content" />
-        <result column="credential_link" property="credentialLink" />
-        <result column="status" property="status" />
-        <result column="create_time" property="createTime" />
-        <result column="update_time" property="updateTime" />
-        <result column="request_type" property="requestType" />
-        <collection property="items" ofType="Player">
+<!--    <resultMap id="complainInformation" type="ComplainRecordModel">-->
+<!--        <id column="id" property="id" />-->
+<!--        <result column="complainant_id" property="complainantId" />-->
+<!--        <result column="relationOrder_id" property="relationOrderId" />-->
+<!--        <result column="complainant_role" property="complainantRole" />-->
+<!--        <result column="title" property="title" />-->
+<!--        <result column="content" property="content" />-->
+<!--        <result column="credential_link" property="credentialLink" />-->
+<!--        <result column="status" property="status" />-->
+<!--        <result column="create_time" property="createTime" />-->
+<!--        <result column="update_time" property="updateTime" />-->
+<!--        <result column="request_type" property="requestType" />-->
+<!--        <collection property="items" ofType="Player">-->
 
-            <result column="name" property="name" />
-            <result column="mobile_phone" property="mobilePhone" />
-            <result column="user_id" property="userId" />
+<!--            <result column="name" property="name" />-->
+<!--            <result column="mobile_phone" property="mobilePhone" />-->
+<!--            <result column="user_id" property="userId" />-->
 
-        </collection>
-    </resultMap>
+<!--        </collection>-->
+<!--    </resultMap>-->
 
 </mapper>

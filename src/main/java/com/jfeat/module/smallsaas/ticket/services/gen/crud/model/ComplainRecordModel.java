@@ -2,7 +2,6 @@ package com.jfeat.module.smallsaas.ticket.services.gen.crud.model;
 // this is serviceModel.java.vm
 
 
-import com.jfeat.module.nft.oms.services.gen.persistence.model.Player;
 import com.jfeat.module.smallsaas.ticket.services.gen.persistence.model.complainrecord.ComplainRecord;
 
 import java.util.List;
@@ -13,13 +12,4 @@ import java.util.List;
  * * modelpack : $modelpack
  */
 public class ComplainRecordModel extends ComplainRecord {
-    private List<Player> items;
-
-    public List<Player> getItems() {
-        return items;
-    }
-
-    public void setItems(List<Player> items) {
-        this.items = items;
-    }
 }
