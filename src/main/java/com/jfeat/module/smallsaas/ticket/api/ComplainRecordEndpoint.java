@@ -59,7 +59,7 @@ public class ComplainRecordEndpoint {
     public Tip getComplainRecordByComplainantId(@PathVariable Long complainantId,
                                  @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                  @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
-                                 @RequestParam(name = "requestType", required = false, defaultValue = "") String requestType) {
+                                 @RequestParam(name = "requestType", required = false, defaultValue = "ORDER_DISPUTES") String requestType) {
 
         var page = new Page<ComplainRecordRecord>();
         page.setSize(pageSize).setCurrent(pageNum);
