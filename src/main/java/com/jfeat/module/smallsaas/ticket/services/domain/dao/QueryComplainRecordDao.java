@@ -5,9 +5,7 @@ import com.jfeat.crud.plus.QueryMasterDao;
 import com.jfeat.module.smallsaas.ticket.services.domain.model.ComplainRecordRecord;
 import com.jfeat.module.smallsaas.ticket.services.gen.crud.model.ComplainRecordModel;
 import com.jfeat.module.smallsaas.ticket.services.gen.persistence.model.complainrecord.ComplainRecord;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.Date;
 import java.util.List;
@@ -38,7 +36,8 @@ public interface QueryComplainRecordDao extends QueryMasterDao<ComplainRecord> {
     @Select("select * from nft_complain_record Where request_type = #{requestType} ORDER BY create_time DESC")
     List<ComplainRecordRecord> queryComplainRecordPage(Page<ComplainRecordRecord> page, @Param("requestType") String requestType);
 
-    @Select("select * from nft_complain_record Where complainant_id = #{complainantId} AND request_type  LIKE CONCAT('%',#{requestType},'%') ORDER BY create_time DESC")
+    @Result(property = "replyRecordList", column = "id", one = @One(select = "com.jfeat.module.smallsaas.ticket.services.gen.persistence.dao.ComplainReplyRecordMapper.queryByComplainId"))
+    @Select("select * from nft_complain_record Where complainant_id = #{complainantId} AND request_type = #{requestType} ORDER BY create_time DESC")
     List<ComplainRecordRecord> queryComplainRecordPageByComplainantId(Page<ComplainRecordRecord> page,@Param("complainantId") Long complainantId,
                                                       @Param("requestType") String requestType);
 
