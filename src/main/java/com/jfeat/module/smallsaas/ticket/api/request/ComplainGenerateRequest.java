@@ -10,7 +10,6 @@ import lombok.experimental.Accessors;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@NoArgsConstructor
 @Accessors(chain = true)
 public class ComplainGenerateRequest {
     private Long relationOrderId;
