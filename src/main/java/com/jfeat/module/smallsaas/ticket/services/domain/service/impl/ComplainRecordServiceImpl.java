@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Optional;
+
 /**
  * <p>
  * 服务实现类
@@ -37,8 +38,8 @@ public class ComplainRecordServiceImpl extends CRUDComplainRecordServiceImpl imp
     @Override
     public void createComplain(ComplainGenerateCommand command) {
 
-        if(command.getRequestType().equals(ComplainRequestType.ORDER_DISPUTES)){
-            updateOrderStatus(command.getRelationOrderId(),"COMPLAINING");
+        if (command.getRequestType().equals(ComplainRequestType.ORDER_DISPUTES)) {
+            updateOrderStatus(command.getRelationOrderId(), "COMPLAINING");
         }
 
         this.createMaster(ComplainRecord.builder()
@@ -53,28 +54,28 @@ public class ComplainRecordServiceImpl extends CRUDComplainRecordServiceImpl imp
     }
 
     @Override
-    public void complainEnd(Long complainId,Long complainantId) {
-        var complain= Optional.ofNullable(this.getMasterMapper().selectById(complainId))
+    public void complainEnd(Long complainId, Long complainantId) {
+        var complain = Optional.ofNullable(this.getMasterMapper().selectById(complainId))
                 .orElseThrow(() -> {
-                            return new BusinessException(BusinessCode.BadRequest, String.format("当前申诉单号[ID:%s]查询不到对应的申诉单信息", complainId));
-                        });
-        if (complainantId.equals(complain.getComplainantId())){
+                    return new BusinessException(BusinessCode.BadRequest, String.format("当前申诉单号[ID:%s]查询不到对应的申诉单信息", complainId));
+                });
+        if (complainantId.equals(complain.getComplainantId())) {
             complain.setStatus(ComplainRecordStatus.COMPLETED);
             this.updateMaster(complain);
-            updateOrderStatus(complain.getRelationOrderId(),"PAID");
-        }else{
-             new BusinessException(BusinessCode.BadRequest, String.format("您不是申诉单号[ID:%s]的申诉人无法改变申诉单状态", complainId));
+            updateOrderStatus(complain.getRelationOrderId(), "PAID");
+        } else {
+            throw new BusinessException(BusinessCode.BadRequest, String.format("您不是申诉单号[ID:%s]的申诉人无法改变申诉单状态", complainId));
         }
     }
 
-    private void updateOrderStatus(Long orderId,String orderStatus) {
+    private void updateOrderStatus(Long orderId, String orderStatus) {
         if (OrderExist(orderId))
-            queryComplainRecordDao.changOrderStatus(orderId,orderStatus);
+            queryComplainRecordDao.changOrderStatus(orderId, orderStatus);
         else
-            new BusinessException(BusinessCode.BadRequest,String.format("相关订单[id:%s]不存在",orderId));
+            new BusinessException(BusinessCode.BadRequest, String.format("相关订单[id:%s]不存在", orderId));
     }
 
-    private boolean OrderExist(Long complainId){
-        return queryComplainRecordDao.OrderExist(complainId)==1;
+    private boolean OrderExist(Long complainId) {
+        return queryComplainRecordDao.OrderExist(complainId) == 1;
     }
 }
